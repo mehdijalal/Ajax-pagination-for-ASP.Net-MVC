@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MJApp.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div style="margin:30px;">
+    @using (Html.BeginForm())
+{
+
+
+    <input type="text" name="project_name" id="project_name" value="@Request["project_name"]"   placeholder="Project Name" />
+    <input type="text" name="project_date" id="project_date" placeholder="Project Date" />
+    <select name="location" id="location">
+        <option value="1">All</option>
+        <option value="2">Kabul</option>
+    </select>
+    <input type="submit" value="Search" />
+    }
+</div>
+<div id="page">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Project Name
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in ViewBag.query)
+        {
+            <tr>
+                <td>@item.ProjectName</td>
+                <td>@item.ProjectDate</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+                </td>
+            </tr>
+        }
+
+
+        <tr>
+            <td>
+                @Html.Raw(ViewBag.link)
+            </td>
+        </tr>
+    </table>
+
+</div>

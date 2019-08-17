@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MJApp.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div id="page">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Project Name
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in ViewBag.query)
+        {
+            <tr>
+                <td>@item.ProjectName</td>
+                <td>@item.ProjectDate</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+                </td>
+            </tr>
+        }
+
+
+        <tr>
+            <td>
+                @Html.Raw(ViewBag.link)
+            </td>
+        </tr>
+    </table>
+
+</div>
